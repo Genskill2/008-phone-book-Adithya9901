@@ -63,19 +63,36 @@ int main(int argc, char *argv[]) {
     exit(0);
   } else if (strcmp(argv[1], "search") == 0) {  /* Handle search */
     if (argc != 3) {
-      print_usage("Improper arguments for delete", argv[0]);
+      print_usage("Improper arguments for search", argv[0]);
       exit(1);
     }
     FILE *fp = open_db_file();
     char *name = argv[2];
-    if (!delete(fp, name)) {
+    if (!search(fp, name)) {
       printf("no match\n");
       fclose(fp);
       exit(1);
     }
     fclose(fp);
     exit(0);
-  } else {
+  } else if(strcmp( argv[1],"delete")==0)
+  {
+    if(argc!=3)
+    {
+      print_usage("Improper arguements for delete",argv[0]);
+      exit(1);
+    }
+    FILE *fp=open_db_file();
+    char *name=argv[2];
+    if(!delete(fp,name))
+    {
+      printf("no match\n");
+      fclose(fp);
+      exit(1);
+    }
+    fclose(fp);
+    exit(0);
+  }else{
     print_usage("Invalid command", argv[0]);
     exit(1);
   }
