@@ -206,6 +206,8 @@ void list(FILE *db_file) {
     p=p->next;
   }
   /* TBD print total count */
+  size=num;
+  printf("Total entries:%d\n",num);
   free_entries(base);
 }
 
